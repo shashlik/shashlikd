@@ -15,7 +15,7 @@ LOCAL_SHARED_LIBRARIES := \
 	libandroidfw \
 	libutils \
 	libbinder \
-    libui \
+	libui \
 	libskia \
     libEGL \
     libGLESv1_CM \
@@ -30,5 +30,21 @@ endif
 
 include $(BUILD_EXECUTABLE)
 
-$(LOCAL_BUILT_MODULE) :
-	ln -s -f /system/bin/bootanimation_shashlik $(TARGET_OUT)/bin/bootanimation
+
+# Add symlink to bootanimation
+#
+ALL_TOOLS:= bootanimation
+SYMLINKS := $(addprefix $(TARGET_OUT)/bin/,$(ALL_TOOLS))
+$(SYMLINKS): TOOLBOX_BINARY := $(LOCAL_MODULE)
+$(SYMLINKS): $(LOCAL_INSTALLED_MODULE) $(LOCAL_PATH)/Android.mk
+	@echo "Symlink: $@ -> $(TOOLBOX_BINARY)"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf $(TOOLBOX_BINARY) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(SYMLINKS)
+
+# We need this so that the installed files could be picked up based on the
+# local module name
+ALL_MODULES.$(LOCAL_MODULE).INSTALLED := \
+    $(ALL_MODULES.$(LOCAL_MODULE).INSTALLED) $(SYMLINKS)
