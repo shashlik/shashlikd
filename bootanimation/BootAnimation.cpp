@@ -313,7 +313,7 @@ bool BootAnimation::threadLoop()
 
 bool BootAnimation::android()
 {
-    int fd = qemu_pipe_open("unix:/tmp/asdf");
+    int fd = qemu_pipe_open("unix:/tmp/shashlik_controller");
     if(!fd) {
         return false;
     }
