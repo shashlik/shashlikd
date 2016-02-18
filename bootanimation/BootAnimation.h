@@ -30,7 +30,6 @@ class SkBitmap;
 
 namespace android {
 
-class AudioPlayer;
 class Surface;
 class SurfaceComposerClient;
 class SurfaceControl;
@@ -89,7 +88,6 @@ private:
     void checkExit();
 
     sp<SurfaceComposerClient>       mSession;
-    sp<AudioPlayer>                 mAudioPlayer;
     AssetManager mAssets;
     Texture     mAndroid[2];
     int         mWidth;

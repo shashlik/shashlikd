@@ -53,7 +53,6 @@
 
 
 #include "BootAnimation.h"
-#include "AudioPlayer.h"
 
 #define OEM_BOOTANIMATION_FILE "/oem/media/bootanimation.zip"
 #define SYSTEM_BOOTANIMATION_FILE "/system/media/bootanimation.zip"
@@ -149,9 +148,6 @@ void BootAnimation::binderDied(const wp<IBinder>&)
     // might be blocked on a condition variable that will never be updated.
     kill( getpid(), SIGKILL );
     requestExit();
-    if (mAudioPlayer != NULL) {
-        mAudioPlayer->requestExit();
-    }
 }
 
 // status_t BootAnimation::initTexture(Texture* texture, AssetManager& assets,
@@ -394,9 +390,6 @@ void BootAnimation::checkExit() {
     int exitnow = atoi(value);
     if (exitnow) {
         requestExit();
-        if (mAudioPlayer != NULL) {
-            mAudioPlayer->requestExit();
-        }
     }
 }
 
