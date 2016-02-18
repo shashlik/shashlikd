@@ -333,6 +333,10 @@ bool BootAnimation::android()
     } while(1);
     close(fd);
 
+    if (bytes_received == 0) {
+        return false;
+    }
+
     initTexture(&mAndroid[0], buffer, bytes_received);
 
     // clear screen
