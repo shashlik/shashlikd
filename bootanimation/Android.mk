@@ -22,7 +22,9 @@ LOCAL_SHARED_LIBRARIES := \
     libgui \
     libtinyalsa
 
-LOCAL_MODULE:= bootanimation_shashlik
+LOCAL_MODULE := bootanimation_shashlik
+
+LOCAL_OVERRIDES_PACKAGES := bootanimation
 
 ifdef TARGET_32_BIT_SURFACEFLINGER
 LOCAL_32_BIT_ONLY := true
