@@ -319,6 +319,7 @@ bool BootAnimation::android()
     void *buffer = 0;
     do
     {
+        printf("Read %d\n", bytes_received);
         current_size += 4096;
         buffer = realloc(buffer, current_size);
         int t = read(fd, buffer + bytes_received, 4096);
