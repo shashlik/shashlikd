@@ -10,7 +10,8 @@ LOCAL_SRC_FILES := $(call all-java-files-under, java)
 # LOCAL_STATIC_JAVA_LIBRARIES := Keyguard
 LOCAL_JAVA_LIBRARIES := telephony-common
 
-LOCAL_OVERRIDES_PACKAGES := SystemUI Home Launcher2 Calculator BasicDreams Calendar PrintSpooler
+#we can use this to block other packages from being installed
+LOCAL_OVERRIDES_PACKAGES := SystemUI Home Launcher2 Calculator BasicDreams Calendar PrintSpooler WallpaperCropper
 
 LOCAL_PACKAGE_NAME := Shashlikd
 LOCAL_CERTIFICATE := platform
